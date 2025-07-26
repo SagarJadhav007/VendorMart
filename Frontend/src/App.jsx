@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './App.css';
-import Dashboard from './components/Dashboard';
-import SignupLogin from './components/SignupLogin';
-import Header from './components/Header';
-import FindRawMaterialsDashboard from './components/FindRawMaterialsDashboard';
+import Dashboard from './components/Pages/Dashboard/Dashboard';
+import SignupLogin from './components/Pages/Auth/SignupLogin';
+import Header from './components/Pages/Header/Header';
+import LoginModal from './components/Pages/Auth/LoginModal';
+import FindRawMaterialsDashboard from './components/Pages/Dashboard/FindRawMaterialsDashboard';
 
 function AppRoutes({ isLoggedIn, role, handleLogin, handleLogout }) {
   const navigate = useNavigate();

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Header from '../Header/Header';
 
-export default function SignupLogin({ onLogin }) {
+export default function SignupLogin({ isLoggedIn, role, handleLogin, handleLogout }) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -31,6 +32,8 @@ export default function SignupLogin({ onLogin }) {
   };
 
   return (
+    <>
+    <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} role={role} />
     <div style={{ 
       backgroundColor: '#fff5e6', 
       minHeight: '100vh', 
@@ -182,5 +185,6 @@ export default function SignupLogin({ onLogin }) {
         </div>
       </div>
     </div>
+    </>
   );
 } 
