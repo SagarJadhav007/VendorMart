@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { EyeOff, Eye, Globe, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,19 +19,10 @@ import {
 import 'react-international-phone/style.css';
 import { PhoneInput } from 'react-international-phone';
 
-// interface RegisterModalProps {
-//   isOpen: boolean;
-//   onClose: () => void;
-//   onSwitchToLogin: () => void;
-// }
-
-
-
 function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [captchaVerified, setCaptchaVerified] = useState(false);
   const [userType, setUserType] = useState<"client" | "consultant" | null>(null);
 
   return (
@@ -156,15 +146,10 @@ function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
                   </>
                 )}
 
-                <ReCAPTCHA
-                  sitekey="6LfKiz8aAAAAANcSl2O0Ehz1CJLWo5Qb9PdoS7E3"
-                  onChange={() => setCaptchaVerified(true)}
-                  onExpired={() => setCaptchaVerified(false)}
-                />
+      
 
                 <Button
                   type="submit"
-                  disabled={!captchaVerified}
                   className="w-full rounded-full bg-black text-white hover:bg-blue-600"
                 >
                   Register

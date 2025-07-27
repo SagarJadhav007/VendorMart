@@ -8,13 +8,16 @@ export const createProduct = async (req, res) => {
 
     const { name, description, price, unit, stock } = req.body;
 
+    const imageUrl = req.file ? req.file.path : null;
+
     const product = await Product.create({
       wholesaler_id: req.user.id,
       name,
       description,
       price,
       unit,
-      stock
+      stock,
+      imageUrl,
     });
 
     res.status(201).json({ message: "Product created successfully", product });
@@ -51,7 +54,12 @@ export const updateProduct = async (req, res) => {
       return res.status(403).json({ message: "Not authorized" });
     }
 
-    const updates = req.body;
+    const updates = { ...req.body };
+
+    if (req.file) {
+      updates.imageUrl = req.file.path;
+    }
+
     const updatedProduct = await Product.findByIdAndUpdate(req.params.id, updates, { new: true });
     res.json({ message: "Product updated", updated: updatedProduct });
   } catch (err) {
